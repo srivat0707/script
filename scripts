@@ -1,0 +1,21 @@
+import csv
+with open('smartphone_category (1).csv') as f:
+    reader = csv.reader(f)
+    b=[]
+    for row in reader:
+        count=0
+        s=1
+        for j in row[0]:
+            count+=1
+            if j=='(':
+                s+=1
+                b.append(row[0][:count-1])
+                break
+        if "(" not in row[0]:
+            b.append(row[0][:count])
+
+    s=set(b[1:])
+    with open('innovators.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        for i in s:
+            writer.writerow([i])
